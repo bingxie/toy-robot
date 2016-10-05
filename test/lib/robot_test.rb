@@ -5,34 +5,46 @@ class RobotTest < Minitest::Test
     @robot = Robot.new(Table.new)
   end
 
-  def test_place
-    position = Position.new(2, 3)
-    facing = :NORTH
+  def test_report
+    @robot.place(Position.new(2, 3), :NORTH)
 
-    @robot.place(position, facing)
-
-    assert_equal position, @robot.position
-    assert_equal :NORTH, @robot.facing
+    assert_equal '2,3,NORTH', @robot.report
   end
 
-  def test_not_placed?
-    refute @robot.placed?
-  end
+  class PlaceTest < Minitest::Test
+    def setup
+      @robot = Robot.new(Table.new)
+    end
 
-  def test_not_placed_without_facing
-    @robot.place(Position.new(2, 3), nil)
-    refute @robot.placed?
-  end
+    def test_place
+      position = Position.new(2, 3)
+      facing = :NORTH
 
-  def test_not_placed_without_position
-    @robot.place(nil, :WEST)
-    refute @robot.placed?
-  end
+      @robot.place(position, facing)
 
-  def test_placed?
-    @robot.place(Position.new(2, 3), :WEST)
+      assert_equal position, @robot.position
+      assert_equal :NORTH, @robot.facing
+    end
 
-    assert @robot.placed?
+    def test_not_placed?
+      refute @robot.placed?
+    end
+
+    def test_not_placed_without_facing
+      @robot.place(Position.new(2, 3), nil)
+      refute @robot.placed?
+    end
+
+    def test_not_placed_without_position
+      @robot.place(nil, :WEST)
+      refute @robot.placed?
+    end
+
+    def test_placed?
+      @robot.place(Position.new(2, 3), :WEST)
+
+      assert @robot.placed?
+    end
   end
 
   class TurnTest < Minitest::Test

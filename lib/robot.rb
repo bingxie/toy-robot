@@ -30,6 +30,10 @@ class Robot
     move_to(position.send(@facing.downcase)) if placed?
   end
 
+  def report
+    "#{@position},#{@facing}" if placed?
+  end
+
   private
 
   def move_to(position)
