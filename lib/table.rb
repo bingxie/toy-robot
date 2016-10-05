@@ -5,8 +5,8 @@ class Table
     @width = 5
   end
 
-  def inside?(x, y)
-    inside_length?(x) && inside_width?(y)
+  def inside?(position)
+    inside_length?(position.x) && inside_width?(position.y)
   end
 
   private
