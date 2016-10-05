@@ -34,4 +34,23 @@ class RobotTest < Minitest::Test
 
     assert @robot.placed?
   end
+
+  class TurnTest < Minitest::Test
+    def setup
+      @robot = Robot.new(Table.new)
+      @robot.place(Position.new(2, 3), :WEST)
+    end
+
+    def test_turn_left
+      @robot.turn_left
+
+      assert_equal :SOUTH, @robot.facing
+    end
+
+    def test_turn_right
+      @robot.turn_right
+
+      assert_equal :NORTH, @robot.facing
+    end
+  end
 end

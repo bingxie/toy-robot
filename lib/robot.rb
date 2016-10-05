@@ -18,6 +18,14 @@ class Robot
     @position && @facing
   end
 
+  def turn_left
+    rotate_clockwise(-1)
+  end
+
+  def turn_right
+    rotate_clockwise(1)
+  end
+
   private
 
   def move_to(position)
@@ -26,5 +34,9 @@ class Robot
 
   def face(facing)
     @facing = facing if FACINGS.include?(facing)
+  end
+
+  def rotate_clockwise(steps)
+    @facing = FACINGS.rotate(FACINGS.index(@facing)).rotate(steps).first if placed?
   end
 end
