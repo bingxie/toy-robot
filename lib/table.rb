@@ -6,7 +6,7 @@ class Table
   end
 
   def inside?(position)
-    inside_length?(position.x) && inside_width?(position.y)
+    inside_length?(position.x) && inside_width?(position.y) if position
   end
 
   private

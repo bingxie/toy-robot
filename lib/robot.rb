@@ -5,11 +5,17 @@ class Robot
 
   def initialize(table)
     @table = table
+    @position = nil
+    @facing = nil
   end
 
   def place(position, facing)
     move_to(position)
     face(facing)
+  end
+
+  def placed?
+    @position && @facing
   end
 
   private
