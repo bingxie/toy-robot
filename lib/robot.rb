@@ -26,6 +26,10 @@ class Robot
     rotate_clockwise(1)
   end
 
+  def move_forward
+    move_to(position.send(@facing.downcase)) if placed?
+  end
+
   private
 
   def move_to(position)

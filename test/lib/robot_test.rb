@@ -53,4 +53,42 @@ class RobotTest < Minitest::Test
       assert_equal :NORTH, @robot.facing
     end
   end
+
+  class MoveTest < Minitest::Test
+    def setup
+      @robot = Robot.new(Table.new)
+    end
+
+    def test_move_forward_east
+      @robot.place(Position.new(2, 3), :EAST)
+      @robot.move_forward
+
+      assert_equal 3, @robot.position.x
+      assert_equal 3, @robot.position.y
+    end
+
+    def test_move_forward_south
+      @robot.place(Position.new(2, 3), :SOUTH)
+      @robot.move_forward
+
+      assert_equal 2, @robot.position.x
+      assert_equal 2, @robot.position.y
+    end
+
+    def test_move_forward_west
+      @robot.place(Position.new(2, 3), :WEST)
+      @robot.move_forward
+
+      assert_equal 1, @robot.position.x
+      assert_equal 3, @robot.position.y
+    end
+
+    def test_move_forward_north
+      @robot.place(Position.new(2, 3), :NORTH)
+      @robot.move_forward
+
+      assert_equal 2, @robot.position.x
+      assert_equal 4, @robot.position.y
+    end
+  end
 end
