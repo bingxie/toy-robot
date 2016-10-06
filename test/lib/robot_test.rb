@@ -11,6 +11,14 @@ class RobotTest < Minitest::Test
     assert_equal '2,3,NORTH', @robot.report
   end
 
+  def test_report_when_not_placed
+    exception = assert_raises RobotError do
+      @robot.report
+    end
+
+    assert_equal 'Not placed', exception.message
+  end
+
   class PlaceTest < Minitest::Test
     def setup
       @robot = Robot.new(Table.new)

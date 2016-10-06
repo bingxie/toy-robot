@@ -29,13 +29,15 @@ class Robot
   end
 
   def move_forward
-    raise(RobotError, 'Not placed') unless placed?
+    placed_check
 
     move_to(position.send(@facing.downcase))
   end
 
   def report
-    "#{@position},#{@facing}" if placed?
+    placed_check
+
+    "#{@position},#{@facing}"
   end
 
   private
@@ -53,8 +55,12 @@ class Robot
   end
 
   def rotate_clockwise(steps)
-    raise(RobotError, 'Not placed') unless placed?
+    placed_check
 
     @facing = FACINGS.rotate(FACINGS.index(@facing)).rotate(steps).first
+  end
+
+  def placed_check
+    raise(RobotError, 'Not placed') unless placed?
   end
 end
