@@ -41,7 +41,7 @@ class RobotTest < Minitest::Test
       exception = assert_raises RobotError do
         @robot.place(nil, 1, :WEST)
       end
-      assert_equal 'Position is required', exception.message
+      assert_equal 'Position x and y is required', exception.message
 
       refute @robot.placed?
     end
