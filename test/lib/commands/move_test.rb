@@ -1,13 +1,13 @@
 require_relative '../../test_helper'
 
 module Commands
-  class LeftTest < Minitest::Test
+  class MoveTest < Minitest::Test
     def test_run_command
       robot = Minitest::Mock.new
-      left_command = Commands::Left.new(robot, STDOUT)
+      move_command = Commands::Move.new(robot, STDOUT)
 
-      robot.expect(:turn_left, nil)
-      left_command.run
+      robot.expect(:move_forward, nil)
+      move_command.run
 
       robot.verify
     end

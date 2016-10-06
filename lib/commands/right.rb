@@ -2,7 +2,7 @@ require_relative './command'
 
 module Commands
   class Right < Command
-    def run(command)
+    def run(*command)
       run_command do
         @robot.turn_right
       end

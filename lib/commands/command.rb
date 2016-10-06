@@ -5,7 +5,7 @@ module Commands
       @io = io
     end
 
-    def run(command)
+    def run(*command)
       raise NotImplementedError
     end
 

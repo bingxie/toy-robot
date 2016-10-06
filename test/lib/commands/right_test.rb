@@ -7,7 +7,7 @@ module Commands
       right_command = Commands::Right.new(robot, STDOUT)
 
       robot.expect(:turn_right, nil)
-      right_command.run('RIGHT')
+      right_command.run
 
       robot.verify
     end

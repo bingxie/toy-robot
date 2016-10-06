@@ -1,10 +1,10 @@
 require_relative './command'
 
 module Commands
-  class Left < Command
+  class Move < Command
     def run(*command)
       run_command do
-        @robot.turn_left
+        @robot.move_forward
       end
     end
   end
