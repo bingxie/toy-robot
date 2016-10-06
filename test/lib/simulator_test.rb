@@ -16,4 +16,14 @@ class SimulatorTest < Minitest::Test
 
     assert_equal '3,3,EAST', @simulator.robot.report
   end
+
+  def test_execute_bad_input
+    io = Minitest::Mock.new
+    simulator = Simulator.new(io)
+
+    io.expect(:puts, nil, ['Please input correct command'])
+    simulator.execute('BAD')
+
+    io.verify
+  end
 end

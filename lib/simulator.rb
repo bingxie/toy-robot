@@ -10,13 +10,14 @@ require_relative './commands/bad'
 class Simulator
   attr_reader :robot
 
-  def initialize
+  def initialize(io = STDOUT)
     table = Table.new
     @robot = Robot.new(table)
+    @io = io
   end
 
   def execute(input)
-    choose_command(input).new(@robot, STDOUT).run(input)
+    choose_command(input).new(@robot, @io).run(input)
   end
 
   private
