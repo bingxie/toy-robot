@@ -17,6 +17,15 @@ class SimulatorTest < Minitest::Test
     assert_equal '3,3,EAST', @simulator.robot.report
   end
 
+  def test_execute_with_bad_inputs
+    @simulator.execute('LEFT')
+    @simulator.execute('PLACE 0,0,WEST')
+    @simulator.execute('PLACE 0,0,ABC')
+    @simulator.execute('MOVE')
+
+    assert_equal '0,0,WEST', @simulator.robot.report
+  end
+
   def test_execute_bad_input
     io = Minitest::Mock.new
     simulator = Simulator.new(io)

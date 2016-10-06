@@ -10,26 +10,30 @@ class PositionTest < Minitest::Test
   end
 
   def test_north
-    @position.north
+    new_position = @position.north
 
-    assert_equal 4, @position.y
+    refute_equal new_position, @position
+    assert_equal 4, new_position.y
   end
 
   def test_east
-    @position.east
+    new_position = @position.east
 
-    assert_equal 3, @position.x
+    refute_equal new_position, @position
+    assert_equal 3, new_position.x
   end
 
   def test_west
-    @position.west
+    new_position = @position.west
 
-    assert_equal 1, @position.x
+    refute_equal new_position, @position
+    assert_equal 1, new_position.x
   end
 
   def test_south
-    @position.south
+    new_position = @position.south
 
-    assert_equal 2, @position.y
+    refute_equal new_position, @position
+    assert_equal 2, new_position.y
   end
 end

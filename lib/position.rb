@@ -7,23 +7,19 @@ class Position
   end
 
   def east
-    @x += 1
-    self
+    Position.new(@x + 1, @y)
   end
 
   def south
-    @y -= 1
-    self
+    Position.new(@x, @y - 1)
   end
 
   def west
-    @x -= 1
-    self
+    Position.new(@x - 1, @y)
   end
 
   def north
-    @y += 1
-    self
+    Position.new(@x, @y + 1)
   end
 
   def to_s

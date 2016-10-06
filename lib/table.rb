@@ -1,8 +1,8 @@
 class Table
   def initialize(length = 5, width = 5)
     raise(ArgumentError, 'Table must have at least one grid') if length < 1 || width < 1
-    @length = 5
-    @width = 5
+    @length = length
+    @width = width
   end
 
   def inside?(position)
