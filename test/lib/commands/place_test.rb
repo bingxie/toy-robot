@@ -5,7 +5,7 @@ module Commands
     def test_run_command
       robot = Minitest::Mock.new
 
-      place_command = Commonds::Place.new(robot, STDOUT)
+      place_command = Commands::Place.new(robot, STDOUT)
       robot.expect(:place, nil, ['1', '2', :EAST])
       place_command.run('PLACE 1,2,EAST')
 
@@ -20,7 +20,7 @@ module Commands
         raise RobotError, 'Invalid facing'
       end
 
-      place_command = Commonds::Place.new(robot, io)
+      place_command = Commands::Place.new(robot, io)
       io.expect(:puts, nil, ['Invalid facing'])
       place_command.run('PLACE 1,2,ELSE')
 
