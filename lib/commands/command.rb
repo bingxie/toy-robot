@@ -1,3 +1,4 @@
+require_relative '../robot_error'
 module Commands
   class Command
     def initialize(robot, io)

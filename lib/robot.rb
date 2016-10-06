@@ -1,3 +1,5 @@
+require_relative 'position'
+
 class Robot
   FACINGS = [:EAST, :SOUTH, :WEST, :NORTH].freeze
 
