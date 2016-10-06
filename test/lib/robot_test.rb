@@ -6,7 +6,7 @@ class RobotTest < Minitest::Test
   end
 
   def test_report
-    @robot.place(Position.new(2, 3), :NORTH)
+    @robot.place(2, 3, :NORTH)
 
     assert_equal '2,3,NORTH', @robot.report
   end
@@ -17,12 +17,10 @@ class RobotTest < Minitest::Test
     end
 
     def test_place
-      position = Position.new(2, 3)
-      facing = :NORTH
+      @robot.place(2, 3, :NORTH)
 
-      @robot.place(position, facing)
-
-      assert_equal position, @robot.position
+      assert_equal 2, @robot.position.x
+      assert_equal 3, @robot.position.y
       assert_equal :NORTH, @robot.facing
     end
 
@@ -32,7 +30,7 @@ class RobotTest < Minitest::Test
 
     def test_not_placed_without_facing
       exception = assert_raises RobotError do
-        @robot.place(Position.new(2, 3), nil)
+        @robot.place(2, 3, nil)
       end
       assert_equal 'Invalid facing', exception.message
 
@@ -41,7 +39,7 @@ class RobotTest < Minitest::Test
 
     def test_not_placed_without_position
       exception = assert_raises RobotError do
-        @robot.place(nil, :WEST)
+        @robot.place(nil, 1, :WEST)
       end
       assert_equal 'Position is required', exception.message
 
@@ -49,7 +47,7 @@ class RobotTest < Minitest::Test
     end
 
     def test_placed?
-      @robot.place(Position.new(2, 3), :WEST)
+      @robot.place(2, 3, :WEST)
 
       assert @robot.placed?
     end
@@ -58,7 +56,7 @@ class RobotTest < Minitest::Test
   class TurnTest < Minitest::Test
     def setup
       @robot = Robot.new(Table.new)
-      @robot.place(Position.new(2, 3), :WEST)
+      @robot.place(2, 3, :WEST)
     end
 
     def test_turn_left
@@ -90,7 +88,7 @@ class RobotTest < Minitest::Test
     end
 
     def test_move_forward_east
-      @robot.place(Position.new(2, 3), :EAST)
+      @robot.place(2, 3, :EAST)
       @robot.move_forward
 
       assert_equal 3, @robot.position.x
@@ -98,7 +96,7 @@ class RobotTest < Minitest::Test
     end
 
     def test_move_forward_south
-      @robot.place(Position.new(2, 3), :SOUTH)
+      @robot.place(2, 3, :SOUTH)
       @robot.move_forward
 
       assert_equal 2, @robot.position.x
@@ -106,7 +104,7 @@ class RobotTest < Minitest::Test
     end
 
     def test_move_forward_west
-      @robot.place(Position.new(2, 3), :WEST)
+      @robot.place(2, 3, :WEST)
       @robot.move_forward
 
       assert_equal 1, @robot.position.x
@@ -114,7 +112,7 @@ class RobotTest < Minitest::Test
     end
 
     def test_move_forward_north
-      @robot.place(Position.new(2, 3), :NORTH)
+      @robot.place(2, 3, :NORTH)
       @robot.move_forward
 
       assert_equal 2, @robot.position.x
@@ -130,7 +128,7 @@ class RobotTest < Minitest::Test
     end
 
     def test_move_outside_table
-      @robot.place(Position.new(0, 3), :WEST)
+      @robot.place(0, 3, :WEST)
 
       exception = assert_raises RobotError do
         @robot.move_forward

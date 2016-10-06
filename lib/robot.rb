@@ -9,10 +9,10 @@ class Robot
     @facing = nil
   end
 
-  def place(position, facing)
-    raise(RobotError, 'Position is required') unless position
+  def place(x, y, facing)
+    raise(RobotError, 'Position x and y is required') unless x && y
 
-    move_to(position)
+    move_to(Position.new(x, y))
     face(facing)
   end
 
