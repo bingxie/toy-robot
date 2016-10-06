@@ -10,7 +10,7 @@ class Robot
   end
 
   def place(position, facing)
-    raise 'Position is required' unless position
+    raise(RobotError, 'Position is required') unless position
 
     move_to(position)
     face(facing)
@@ -29,7 +29,7 @@ class Robot
   end
 
   def move_forward
-    raise 'Not placed' unless placed?
+    raise(RobotError, 'Not placed') unless placed?
 
     move_to(position.send(@facing.downcase))
   end
@@ -41,19 +41,19 @@ class Robot
   private
 
   def move_to(position)
-    raise 'Outside table' unless @table.inside?(position)
+    raise(RobotError, 'Outside table') unless @table.inside?(position)
 
     @position = position
   end
 
   def face(facing)
-    raise 'Invalid facing' unless FACINGS.include?(facing)
+    raise(RobotError, 'Invalid facing') unless FACINGS.include?(facing)
 
     @facing = facing
   end
 
   def rotate_clockwise(steps)
-    raise 'Not placed' unless placed?
+    raise(RobotError, 'Not placed') unless placed?
 
     @facing = FACINGS.rotate(FACINGS.index(@facing)).rotate(steps).first
   end

@@ -20,4 +20,10 @@ class TableTest < Minitest::Test
     position = Position.new(0, 5)
     refute @table.inside?(position)
   end
+
+  def test_wrong_arguments
+    assert_raises ArgumentError do
+      Table.new(0, 1)
+    end
+  end
 end

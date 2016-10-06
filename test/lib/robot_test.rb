@@ -31,7 +31,7 @@ class RobotTest < Minitest::Test
     end
 
     def test_not_placed_without_facing
-      exception = assert_raises RuntimeError do
+      exception = assert_raises RobotError do
         @robot.place(Position.new(2, 3), nil)
       end
       assert_equal 'Invalid facing', exception.message
@@ -40,7 +40,7 @@ class RobotTest < Minitest::Test
     end
 
     def test_not_placed_without_position
-      exception = assert_raises RuntimeError do
+      exception = assert_raises RobotError do
         @robot.place(nil, :WEST)
       end
       assert_equal 'Position is required', exception.message
@@ -76,7 +76,7 @@ class RobotTest < Minitest::Test
     def test_turn_when_not_placed
       @robot = Robot.new(Table.new)
 
-      exception = assert_raises RuntimeError do
+      exception = assert_raises RobotError do
         @robot.turn_right
       end
 
@@ -122,7 +122,7 @@ class RobotTest < Minitest::Test
     end
 
     def test_move_when_not_placed
-      exception = assert_raises RuntimeError do
+      exception = assert_raises RobotError do
         @robot.move_forward
       end
 
@@ -132,7 +132,7 @@ class RobotTest < Minitest::Test
     def test_move_outside_table
       @robot.place(Position.new(0, 3), :WEST)
 
-      exception = assert_raises RuntimeError do
+      exception = assert_raises RobotError do
         @robot.move_forward
       end
       assert_equal 'Outside table', exception.message

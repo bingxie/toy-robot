@@ -1,6 +1,6 @@
 class Table
   def initialize(length = 5, width = 5)
-    raise 'Table must have at least one grid' if length < 0 || width < 0
+    raise(ArgumentError, 'Table must have at least one grid') if length < 1 || width < 1
     @length = 5
     @width = 5
   end
