@@ -47,3 +47,7 @@ Run single test like this:
 ```
   $ ruby test/lib/table_test.rb
 ```
+
+### Changes
+1. Add a new 'BACK' command to let the robot move backward.
+2.

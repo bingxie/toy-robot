@@ -36,6 +36,12 @@ class Robot
     move_to(position.send(@facing.downcase))
   end
 
+  def move_backward
+    placed_check
+
+    move_to(position.send(opposite_facing.downcase))
+  end
+
   def report
     placed_check
 
@@ -59,7 +65,15 @@ class Robot
   def rotate_clockwise(steps)
     placed_check
 
-    @facing = FACINGS.rotate(FACINGS.index(@facing)).rotate(steps).first
+    @facing = rotate_facing(steps)
+  end
+
+  def opposite_facing
+    rotate_facing(2)
+  end
+
+  def rotate_facing(steps)
+    FACINGS.rotate(FACINGS.index(@facing)).rotate(steps).first
   end
 
   def placed_check

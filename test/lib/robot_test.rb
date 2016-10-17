@@ -90,7 +90,7 @@ class RobotTest < Minitest::Test
     end
   end
 
-  class MoveTest < Minitest::Test
+  class MoveForwardTest < Minitest::Test
     def setup
       @robot = Robot.new(Table.new)
     end
@@ -140,6 +140,61 @@ class RobotTest < Minitest::Test
 
       exception = assert_raises RobotError do
         @robot.move_forward
+      end
+      assert_equal 'Outside table', exception.message
+    end
+  end
+
+  class MoveBackwardTest < Minitest::Test
+    def setup
+      @robot = Robot.new(Table.new)
+    end
+
+    def test_move_backward_east
+      @robot.place(2, 3, :EAST)
+      @robot.move_backward
+
+      assert_equal 1, @robot.position.x
+      assert_equal 3, @robot.position.y
+    end
+
+    def test_move_backward_south
+      @robot.place(2, 3, :SOUTH)
+      @robot.move_backward
+
+      assert_equal 2, @robot.position.x
+      assert_equal 4, @robot.position.y
+    end
+
+    def test_move_backward_west
+      @robot.place(2, 3, :WEST)
+      @robot.move_backward
+
+      assert_equal 3, @robot.position.x
+      assert_equal 3, @robot.position.y
+    end
+
+    def test_move_backward_north
+      @robot.place(2, 3, :NORTH)
+      @robot.move_backward
+
+      assert_equal 2, @robot.position.x
+      assert_equal 2, @robot.position.y
+    end
+
+    def test_move_when_not_placed
+      exception = assert_raises RobotError do
+        @robot.move_backward
+      end
+
+      assert_equal 'Not placed', exception.message
+    end
+
+    def test_move_outside_table
+      @robot.place(0, 3, :EAST)
+
+      exception = assert_raises RobotError do
+        @robot.move_backward
       end
       assert_equal 'Outside table', exception.message
     end
