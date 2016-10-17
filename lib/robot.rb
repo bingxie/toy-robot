@@ -29,6 +29,10 @@ class Robot
     rotate_clockwise(1)
   end
 
+  def turn_around
+    rotate_clockwise(2)
+  end
+
   def move_forward
     placed_check
 

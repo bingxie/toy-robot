@@ -19,6 +19,8 @@ module Commands
         Commands::Left
       when 'RIGHT'
         Commands::Right
+      when 'AROUND'
+        Commands::Around
       when 'REPORT'
         Commands::Report
       else

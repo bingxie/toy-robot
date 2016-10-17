@@ -79,6 +79,14 @@ class RobotTest < Minitest::Test
       assert_equal 'NORTH', @robot.facing.to_s
     end
 
+    def test_turn_around
+      @robot.turn_around
+      assert_equal 'EAST', @robot.facing.to_s
+
+      @robot.turn_around
+      assert_equal 'WEST', @robot.facing.to_s
+    end
+
     def test_turn_when_not_placed
       @robot = Robot.new(Table.new)
 
