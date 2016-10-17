@@ -12,12 +12,13 @@ class SimulatorTest < Minitest::Test
     @simulator.execute('LEFT')
     @simulator.execute('MOVE')
     @simulator.execute('RIGHT')
+    @simulator.execute('BACK')
     @simulator.execute('REPORT')
 
-    assert_equal '3,3,EAST', @simulator.robot.report
+    assert_equal '2,3,EAST', @simulator.robot.report
   end
 
-  def test_execute_with_bad_inputs
+  def test_execute_with_wrong_inputs
     @simulator.execute('LEFT')
     @simulator.execute('PLACE 0,0,WEST')
     @simulator.execute('PLACE 0,0,ABC')
