@@ -6,7 +6,7 @@ module Commands
       robot = Minitest::Mock.new
 
       place_command = Commands::Place.new(robot, STDOUT)
-      robot.expect(:place, nil, ['1', '2', :EAST])
+      robot.expect(:place, nil, ['1', '2', 'EAST'])
       place_command.run('PLACE 1,2,EAST')
 
       robot.verify

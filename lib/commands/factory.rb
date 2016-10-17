@@ -13,6 +13,8 @@ module Commands
         Commands::Place
       when 'MOVE'
         Commands::Move
+      when 'BACK'
+        Commands::Back
       when 'LEFT'
         Commands::Left
       when 'RIGHT'

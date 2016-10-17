@@ -1,8 +1,7 @@
 require_relative 'position'
+require_relative 'facing'
 
 class Robot
-  FACINGS = [:EAST, :SOUTH, :WEST, :NORTH].freeze
-
   attr_reader :position, :facing
 
   def initialize(table)
@@ -33,7 +32,13 @@ class Robot
   def move_forward
     placed_check
 
-    move_to(position.send(@facing.downcase))
+    move_to(position.send(@facing.to_s.downcase))
+  end
+
+  def move_backward
+    placed_check
+
+    move_to(position.send(@facing.opposite.to_s.downcase))
   end
 
   def report
@@ -51,15 +56,15 @@ class Robot
   end
 
   def face(facing)
-    raise(RobotError, 'Invalid facing') unless FACINGS.include?(facing)
+    raise(RobotError, 'Invalid facing') unless Facing.valid?(facing)
 
-    @facing = facing
+    @facing = Facing.new(facing)
   end
 
   def rotate_clockwise(steps)
     placed_check
 
-    @facing = FACINGS.rotate(FACINGS.index(@facing)).rotate(steps).first
+    @facing = @facing.rotate(steps)
   end
 
   def placed_check
