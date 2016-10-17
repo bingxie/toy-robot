@@ -1,10 +1,11 @@
 require_relative './command'
 
 module Commands
-  class Around < Command
+  class Turn < Command
     def run(*command)
       run_command do
-        @robot.turn_around
+        direction = command.first
+        @robot.send("turn_#{direction.downcase}")
       end
     end
   end

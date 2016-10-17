@@ -1,7 +1,7 @@
 require_relative 'place'
 require_relative 'move'
-require_relative 'left'
-require_relative 'right'
+require_relative 'turn'
+require_relative 'back'
 require_relative 'report'
 require_relative 'bad'
 
@@ -15,12 +15,8 @@ module Commands
         Commands::Move
       when 'BACK'
         Commands::Back
-      when 'LEFT'
-        Commands::Left
-      when 'RIGHT'
-        Commands::Right
-      when 'AROUND'
-        Commands::Around
+      when 'LEFT', 'RIGHT', 'AROUND'
+        Commands::Turn
       when 'REPORT'
         Commands::Report
       else
