@@ -8,7 +8,9 @@ module Commands
     end
 
     def run(*command)
-      raise NotImplementedError
+      run_command do
+        raise NotImplementedError
+      end
     end
 
     private

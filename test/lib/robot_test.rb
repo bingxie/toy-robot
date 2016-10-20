@@ -1,6 +1,8 @@
 require_relative '../test_helper'
 
 class RobotTest < Minitest::Test
+  NOT_PLACED_MESSAGE = 'Not placed, Please use PLACE command to start'.freeze
+
   def setup
     @robot = Robot.new(Table.new)
   end
@@ -16,7 +18,7 @@ class RobotTest < Minitest::Test
       @robot.report
     end
 
-    assert_equal 'Not placed', exception.message
+    assert_equal NOT_PLACED_MESSAGE, exception.message
   end
 
   class PlaceTest < Minitest::Test
@@ -79,6 +81,14 @@ class RobotTest < Minitest::Test
       assert_equal 'NORTH', @robot.facing.to_s
     end
 
+    def test_turn_around
+      @robot.turn_around
+      assert_equal 'EAST', @robot.facing.to_s
+
+      @robot.turn_around
+      assert_equal 'WEST', @robot.facing.to_s
+    end
+
     def test_turn_when_not_placed
       @robot = Robot.new(Table.new)
 
@@ -86,7 +96,7 @@ class RobotTest < Minitest::Test
         @robot.turn_right
       end
 
-      assert_equal 'Not placed', exception.message
+      assert_equal NOT_PLACED_MESSAGE, exception.message
     end
   end
 
@@ -132,7 +142,7 @@ class RobotTest < Minitest::Test
         @robot.move_forward
       end
 
-      assert_equal 'Not placed', exception.message
+      assert_equal NOT_PLACED_MESSAGE, exception.message
     end
 
     def test_move_outside_table
@@ -187,7 +197,7 @@ class RobotTest < Minitest::Test
         @robot.move_backward
       end
 
-      assert_equal 'Not placed', exception.message
+      assert_equal NOT_PLACED_MESSAGE, exception.message
     end
 
     def test_move_outside_table

@@ -13,9 +13,10 @@ class SimulatorTest < Minitest::Test
     @simulator.execute('MOVE')
     @simulator.execute('RIGHT')
     @simulator.execute('BACK')
+    @simulator.execute('AROUND')
     @simulator.execute('REPORT')
 
-    assert_equal '2,3,EAST', @simulator.robot.report
+    assert_equal '2,3,WEST', @simulator.robot.report
   end
 
   def test_execute_with_wrong_inputs
