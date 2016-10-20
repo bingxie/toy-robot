@@ -72,6 +72,6 @@ class Robot
   end
 
   def placed_check
-    raise(RobotError, 'Not placed') unless placed?
+    raise(RobotError, 'Not placed, Please use PLACE command to start') unless placed?
   end
 end
