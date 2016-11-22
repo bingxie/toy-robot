@@ -9,7 +9,7 @@ module Commands
   class Factory
     def self.build(input)
       case input
-      when /^PLACE (\d),(\d),([A-Z]+)/
+      when Commands::Place::PATTERN
         Commands::Place
       when 'MOVE'
         Commands::Move
