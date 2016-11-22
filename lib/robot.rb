@@ -22,15 +22,15 @@ class Robot
   end
 
   def turn_left
-    rotate_clockwise(-1)
+    rotate(-1)
   end
 
   def turn_right
-    rotate_clockwise(1)
+    rotate(1)
   end
 
   def turn_around
-    rotate_clockwise(2)
+    rotate(2)
   end
 
   def move_forward
@@ -65,7 +65,7 @@ class Robot
     @facing = Facing.new(facing)
   end
 
-  def rotate_clockwise(steps)
+  def rotate(steps)
     placed_check
 
     @facing = @facing.rotate(steps)
