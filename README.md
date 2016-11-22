@@ -22,6 +22,11 @@ Run the application with
 
 ```
   $ ruby bin/toy_robot.rb
+
+  # or
+
+  chmod +x bin/toy_robot.rb
+  ./bin/toy_robot.rb
 ```
 
 Follow the instructions to play, for example:
